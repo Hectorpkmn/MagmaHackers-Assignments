@@ -9,6 +9,6 @@ The following features ar required:
 - Create terminal interface
 
 This are not required but nice to have:
--Create GUI interface (Shoes or Gosu)
--Create web app
--Create API
+- Create GUI interface (Shoes or Gosu)
+- Create web app
+- Create API
