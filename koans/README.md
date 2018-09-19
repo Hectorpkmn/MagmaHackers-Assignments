@@ -1,1 +1,3 @@
-'MagmaHackers-Assignments/koans' 
+# Ruby Koans
+
+The ruby koans will be uploaded here
