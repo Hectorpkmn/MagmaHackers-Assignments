@@ -21,15 +21,36 @@ Game starts
 =end
 
 def game_is_open()
-print "Welcome to Tic Tac Toe game"
+  first_game = "This is the first game"
+  p1_turn = "Turn of the player 1"
 
+  puts "Welcome to Tic Tac Toe game"
+  last_game_result = first_game
+  player_turn = p1_turn
+  puts "#{last_game_result} and it is #{player_turn} \n\n"
 end
 
-def game_start()
-print "Game starts"
+def draw_grid()
+  print "Game starts\n"
+
+  grid = {
+    "1" => "[free]",
+    "2" => "[free]",
+    "3" => "[free]",
+    "4" => "[free]",
+    "5" => "[free]",
+    "6" => "[free]",
+    "7" => "[free]",
+    "8" => "[free]",
+    "9" => "[free]"
+  }
+  grid.each do |slot,value|
+    print slot + "," + value + " "
+    print "\n" if (slot == "3") || (slot == "6")
+  end
 end
 
 
 
 game_is_open
-game_start
+draw_grid
