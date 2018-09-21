@@ -33,7 +33,6 @@ end
 def draw_grid()
   print "Game starts\n"
 
-
   grid = {
     "1" => "[free]",
     "2" => "[free]",
@@ -50,7 +49,6 @@ def draw_grid()
     print "\n" if (slot == "3") || (slot == "6")
   end
 end
-
 
 
 
