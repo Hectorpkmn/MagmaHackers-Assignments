@@ -50,7 +50,22 @@ def draw_grid()
   end
 end
 
+def player_1_moves()
+  puts "\n\nTurn of the player 1\n"
+  puts "please choose a free slot by typing its number: \n"
+  numberChosen = gets.to_i
+  # Used a for instead of a while for testing purpose and syntax issues
+  for invalidCounter in 1..5
+    break if (numberChosen != 0) && (numberChosen <= 9)
+    puts "That's not a valid input."
+    puts "please type a valid number: \n"
+    numberChosen = gets.to_i
+  end
+  puts "Your selected slot number was: #{numberChosen}"
+  return numberChosen
+end
 
 
 game_is_open
 draw_grid
+player_1_moves()
