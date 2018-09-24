@@ -54,12 +54,18 @@ def player_1_moves()
   puts "\n\nTurn of the player 1\n"
   puts "please choose a free slot by typing its number: \n"
   numberChosen = gets.to_i
-  # Used a for instead of a while for testing purpose and syntax issues
-  for invalidCounter in 1..5
-    break if (numberChosen != 0) && (numberChosen <= 9)
+  invalidCounter = 0
+  until (numberChosen != 0) && (numberChosen <= 9)
+    if invalidCounter == 5
+      numberChosen = 0
+      break
+    else
     puts "That's not a valid input."
+    invalidCounter += 1
+    puts "invalidCounter: #{invalidCounter}"
     puts "please type a valid number: \n"
     numberChosen = gets.to_i
+    end
   end
   puts "Your selected slot number was: #{numberChosen}"
   return numberChosen
