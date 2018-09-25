@@ -51,27 +51,49 @@ def draw_grid()
 end
 
 def player_1_moves()
-  puts "\n\nTurn of the player 1\n"
-  puts "please choose a free slot by typing its number: \n"
-  numberChosen = gets.to_i
+  puts "\n\nTurn of the player ONE\n"
+  print "please choose a free slot by typing its number: "
+  p1NumberChosen = gets.to_i
   invalidCounter = 0
-  until (numberChosen != 0) && (numberChosen <= 9)
+  until (p1NumberChosen != 0) && (p1NumberChosen <= 9)
     if invalidCounter == 5
-      numberChosen = 0
+      p1NumberChosen = 0
       break
     else
-    puts "That's not a valid input."
+    puts "\nThat's not a valid input."
     invalidCounter += 1
     puts "invalidCounter: #{invalidCounter}"
-    puts "please type a valid number: \n"
-    numberChosen = gets.to_i
+    print "\nplease type a valid number: "
+    p1NumberChosen = gets.to_i
     end
   end
-  puts "Your selected slot number was: #{numberChosen}"
-  return numberChosen
+  puts "Your selected slot number was: #{p1NumberChosen}"
+  return p1NumberChosen
+end
+
+def player_2_moves()
+  puts "\n\nTurn of the player TWO\n"
+  print "please choose a free slot by typing its number: "
+  p2NumberChosen = gets.to_i
+  invalidCounter = 0
+  until (p2NumberChosen != 0) && (p2NumberChosen <= 9)
+    if invalidCounter == 5
+      p2NumberChosen = 0
+      break
+    else
+    puts "\nThat's not a valid input."
+    invalidCounter += 1
+    puts "invalidCounter: #{invalidCounter}"
+    print "\nplease type a valid number: "
+    p2NumberChosen = gets.to_i
+    end
+  end
+  puts "Your selected slot number was: #{p2NumberChosen}"
+  return p2NumberChosen
 end
 
 
 game_is_open
 draw_grid
 player_1_moves()
+player_2_moves()
