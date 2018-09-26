@@ -19,81 +19,98 @@ Game starts
       If no then game ends
 
 =end
+class TicTacToe
+  def initialize
+    first_game = "This is the first game"
+    p1_turn = "Turn of the player 1"
 
-def game_is_open()
-  first_game = "This is the first game"
-  p1_turn = "Turn of the player 1"
+    puts "Welcome to Tic Tac Toe game"
+    @last_game_result = first_game
+    @player_turn = p1_turn
+    puts "#{@last_game_result} and it is #{@player_turn} \n\n"
+    puts "\nGame starts"
+    @tablero = Grid.new()
+    @jugadores = Players.new()
+  end
 
-  puts "Welcome to Tic Tac Toe game"
-  last_game_result = first_game
-  player_turn = p1_turn
-  puts "#{last_game_result} and it is #{player_turn} \n\n"
-end
-
-def draw_grid()
-  print "Game starts\n"
-
-  grid = {
-    "1" => "[free]",
-    "2" => "[free]",
-    "3" => "[free]",
-    "4" => "[free]",
-    "5" => "[free]",
-    "6" => "[free]",
-    "7" => "[free]",
-    "8" => "[free]",
-    "9" => "[free]"
-  }
-  grid.each do |slot,value|
-    print slot + "," + value + " "
-    print "\n" if (slot == "3") || (slot == "6")
+  def start_game
+    @tablero.draw_grid
+    #Hardcoding next steps by now for testing purpose
+    @jugadores.player_1_moves
+    @jugadores.player_2_moves
   end
 end
 
-def player_1_moves()
-  puts "\n\nTurn of the player ONE\n"
-  print "please choose a free slot by typing its number: "
-  p1NumberChosen = gets.to_i
-  invalidCounter = 0
-  until (p1NumberChosen != 0) && (p1NumberChosen <= 9)
-    if invalidCounter == 5
-      p1NumberChosen = 0
-      break
-    else
-    puts "\nThat's not a valid input."
-    invalidCounter += 1
-    puts "invalidCounter: #{invalidCounter}"
-    print "\nplease type a valid number: "
+class Grid
+  #  p1_received = 0
+  #  print defined? p1_received
+  #  p1_received = p2NumberChosen
+  #  p2_received = p2NumberChosen
+
+  #  puts "Player 1 received: #{p1_received}"
+  #  puts "Player 2 received: #{p2_received}"
+  def draw_grid
+    @grid = {
+      "1" => "[free]",
+      "2" => "[free]",
+      "3" => "[free]",
+      "4" => "[free]",
+      "5" => "[free]",
+      "6" => "[free]",
+      "7" => "[free]",
+      "8" => "[free]",
+      "9" => "[free]"
+    }
+    @grid.each do |slot,value|
+      print slot + "," + value + " "
+      print "\n" if (slot == "3") || (slot == "6")
+    end
+  end
+end
+
+class Players
+  def player_1_moves()
+    puts "\n\nTurn of the player ONE\n"
+    print "please choose a free slot by typing its number: "
     p1NumberChosen = gets.to_i
+    invalidCounter = 0
+    until (p1NumberChosen != 0) && (p1NumberChosen <= 9)
+      if invalidCounter == 5
+        p1NumberChosen = 0
+        break
+      else
+      puts "\nThat's not a valid input."
+      invalidCounter += 1
+      puts "invalidCounter: #{invalidCounter}"
+      print "\nplease type a valid number: "
+      p1NumberChosen = gets.to_i
+      end
     end
+    puts "Your selected slot number was: #{p1NumberChosen}"
+    return p1NumberChosen
   end
-  puts "Your selected slot number was: #{p1NumberChosen}"
-  return p1NumberChosen
-end
 
-def player_2_moves()
-  puts "\n\nTurn of the player TWO\n"
-  print "please choose a free slot by typing its number: "
-  p2NumberChosen = gets.to_i
-  invalidCounter = 0
-  until (p2NumberChosen != 0) && (p2NumberChosen <= 9)
-    if invalidCounter == 5
-      p2NumberChosen = 0
-      break
-    else
-    puts "\nThat's not a valid input."
-    invalidCounter += 1
-    puts "invalidCounter: #{invalidCounter}"
-    print "\nplease type a valid number: "
+  def player_2_moves()
+    puts "\n\nTurn of the player TWO\n"
+    print "please choose a free slot by typing its number: "
     p2NumberChosen = gets.to_i
+    invalidCounter = 0
+    until (p2NumberChosen != 0) && (p2NumberChosen <= 9)
+      if invalidCounter == 5
+        p2NumberChosen = 0
+        break
+      else
+      puts "\nThat's not a valid input."
+      invalidCounter += 1
+      puts "invalidCounter: #{invalidCounter}"
+      print "\nplease type a valid number: "
+      p2NumberChosen = gets.to_i
+      end
     end
+    puts "Your selected slot number was: #{p2NumberChosen}"
+    return p2NumberChosen
   end
-  puts "Your selected slot number was: #{p2NumberChosen}"
-  return p2NumberChosen
 end
 
-
-game_is_open
-draw_grid
-player_1_moves()
-player_2_moves()
+ejemplo1 = TicTacToe.new()
+ejemplo1.start_game
