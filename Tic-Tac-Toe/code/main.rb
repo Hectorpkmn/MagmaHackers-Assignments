@@ -34,22 +34,18 @@ class TicTacToe
   end
 
   def start_game
+    @tablero.create_grid
     @tablero.draw_grid
     #Hardcoding next steps by now for testing purpose
     @jugadores.player_1_moves
-    @jugadores.player_2_moves
+    @tablero.receive_choice(4)
+    @tablero.draw_grid
+#    @jugadores.player_2_moves
   end
 end
 
 class Grid
-  #  p1_received = 0
-  #  print defined? p1_received
-  #  p1_received = p2NumberChosen
-  #  p2_received = p2NumberChosen
-
-  #  puts "Player 1 received: #{p1_received}"
-  #  puts "Player 2 received: #{p2_received}"
-  def draw_grid
+  def create_grid
     @grid = {
       "1" => "[free]",
       "2" => "[free]",
@@ -61,10 +57,18 @@ class Grid
       "8" => "[free]",
       "9" => "[free]"
     }
+  end
+
+  def draw_grid
     @grid.each do |slot,value|
       print slot + "," + value + " "
       print "\n" if (slot == "3") || (slot == "6")
     end
+  end
+
+  def receive_choice(choice)
+    @grid.each {|n, p| @grid[choice.to_s] = "X" }
+    puts "Value received was: #{choice}"
   end
 end
 
@@ -87,7 +91,7 @@ class Players
       end
     end
     puts "Your selected slot number was: #{p1NumberChosen}"
-    return p1NumberChosen
+    return p1NumberChosen, "X"
   end
 
   def player_2_moves()
