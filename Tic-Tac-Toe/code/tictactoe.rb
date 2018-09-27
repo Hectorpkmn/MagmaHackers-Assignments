@@ -2,11 +2,11 @@ require_relative 'grid'
 require_relative 'players'
 
 class TicTacToe
-  attr_accessor :grid, :jugador_x
+  attr_accessor :grid, :players
 
   def initialize
     @grid = Grid.new
-    @jugador_x = Players.new
+    @players = Players.new
 #    @respuesta = Players.player_1_envia_coodernada
   end
 
@@ -15,9 +15,7 @@ class TicTacToe
     p1_turn = "Turn of the player 1"
 
     puts "Welcome to Tic Tac Toe game"
-    @last_game_result = first_game
-    @player_turn = p1_turn
-    puts "#{@last_game_result} and it is #{@player_turn} \n"
+    puts "#{first_game} and it is #{p1_turn} \n"
     puts "\nGame starts"
   end
 
@@ -26,11 +24,9 @@ class TicTacToe
     grid.create_grid
     grid.draw_grid
     #Hardcoding next steps by now for testing purpose
-#    jugador_x.player_1_moves
-    jugador_x.player_1_envia_coodernada
-#    grid.receive_choice(@coordinate)
-#    @grid.receive_choice(jugador_x.player_1_envia_coodernada)
+    grid.receive_choice
     grid.draw_grid
-#    @jugadores.player_2_moves
+    grid.receive_choice
+    grid.draw_grid
   end
 end
