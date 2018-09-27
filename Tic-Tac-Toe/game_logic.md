@@ -76,3 +76,20 @@ Variables
     - "1,3" && "2,2" && "3,1" have value O  = game_won_by_p2
 
   Turn 8 is reached == game_status = game_draw
+
+
+  #-------------------------------
+      Pseudocode
+  Game is open
+    set game as first game
+    set Player 1 starts
+  Game starts
+    Grid is displayed
+    Iteration is started until a match is created or turn 8 is reached
+      starting player chooses slot
+      following player chooses slot
+      following player chooses slot
+      game ends
+      game asks if wnat to keep playing
+        If yes then check values and start a new game plus
+        If no then game ends
