@@ -22,9 +22,9 @@ class Grid
     end
   end
 
-  def receive_choice(choice)
-    @grid[choice.to_s] = "[X]"
-    puts "Value received was: #{choice}"
+  def receive_choice(coordinate)
+    @grid[coordinate.to_s] = "[X]"
+    puts "Value received was: #{coordinate}"
 #    puts "Value received was: #{@p1NumberChosen}"
   end
 end

@@ -23,12 +23,14 @@ class TicTacToe
 
   def start_game
     greet_players
-    @grid.create_grid
-    @grid.draw_grid
+    grid.create_grid
+    grid.draw_grid
     #Hardcoding next steps by now for testing purpose
-    @jugador_x.player_1_moves
-    @grid.receive_choice(4)
-    @grid.draw_grid
+#    jugador_x.player_1_moves
+    jugador_x.player_1_envia_coodernada
+#    grid.receive_choice(@coordinate)
+#    @grid.receive_choice(jugador_x.player_1_envia_coodernada)
+    grid.draw_grid
 #    @jugadores.player_2_moves
   end
 end

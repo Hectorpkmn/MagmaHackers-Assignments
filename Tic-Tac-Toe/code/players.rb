@@ -1,5 +1,5 @@
 class Players
-  def player_1_moves()
+  def player_1_moves
     puts "\n\nTurn of the player ONE\n"
     print "please choose a free slot by typing its number: "
     p1NumberChosen = gets.to_i
@@ -21,9 +21,9 @@ class Players
   end
 
   def player_1_envia_coodernada
-    coordinate_to_send = p1NumberChosen
-    puts "El valor a enviar es: #{coordinate_to_send}"
-    coordinate_to_send
+    coordinate = player_1_moves
+    puts "El valor a enviar es: #{coordinate}"
+    coordinate
   end
 
 =begin
