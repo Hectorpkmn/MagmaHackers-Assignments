@@ -1,4 +1,11 @@
 class Grid
+  attr_accessor :grid, :players
+
+  def initialize
+    @players = Players.new
+  end
+
+
   def create_grid
     @grid = {
       "1" => "[F]",
@@ -14,15 +21,16 @@ class Grid
   end
 
   def draw_grid
-    @grid.each do |slot,value|
+    grid.each do |slot,value|
       print slot + "," + value + " "
       print "\n" if (slot == "3") || (slot == "6")
     end
   end
 
-  def receive_choice(choice)
-    @grid[choice.to_s] = "[X]"
-    puts "Value received was: #{choice}"
+  def receive_choice
+    coordinate = players.ask_for_coordinate
+    @grid[coordinate.to_s] = "[X]"
+    puts "Value received was: #{coordinate}"
 #    puts "Value received was: #{@p1NumberChosen}"
   end
 end
