@@ -1,4 +1,6 @@
 class Grid
+  attr_accessor :grid
+
   def create_grid
     @grid = {
       "1" => "[F]",

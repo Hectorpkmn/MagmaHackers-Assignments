@@ -2,8 +2,10 @@ require_relative 'grid'
 require_relative 'players'
 
 class TicTacToe
+  attr_accessor :grid, :jugador_x
+
   def initialize
-    @tablero = Grid.new
+    @grid = Grid.new
     @jugador_x = Players.new
 #    @respuesta = Players.player_1_envia_coodernada
   end
@@ -21,12 +23,12 @@ class TicTacToe
 
   def start_game
     greet_players
-    @tablero.create_grid
-    @tablero.draw_grid
+    @grid.create_grid
+    @grid.draw_grid
     #Hardcoding next steps by now for testing purpose
     @jugador_x.player_1_moves
-    @tablero.receive_choice(4)
-    @tablero.draw_grid
+    @grid.receive_choice(4)
+    @grid.draw_grid
 #    @jugadores.player_2_moves
   end
 end
