@@ -1,10 +1,12 @@
 class Grid
-  attr_accessor :grid, :players
+  attr_accessor :grid, :players, :current_player, :player1, :player2
 
   def initialize
     @players = Players.new
+    @player1 = "[X]"
+    @player2 = "[O]"
+    @current_player = @player1
   end
-
 
   def create_grid
     @grid = {
@@ -27,10 +29,18 @@ class Grid
     end
   end
 
+  def switch_player
+    if current_player == player1
+      @current_player = player2
+    else
+      @current_player = player1
+    end
+  end
+
   def receive_choice
     coordinate = players.ask_for_coordinate
-    @grid[coordinate.to_s] = "[X]"
+    current_player = switch_player
+    @grid[coordinate.to_s] = current_player
     puts "Value received was: #{coordinate}"
-#    puts "Value received was: #{@p1NumberChosen}"
   end
 end
