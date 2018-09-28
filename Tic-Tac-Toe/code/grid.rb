@@ -40,7 +40,6 @@ class Grid
   def insert_value_to_grid(coordinate, current_player)
     if grid[coordinate.to_s] == "[F]"
       @grid[coordinate.to_s] = current_player
-      switch_player #
       puts "Value received was: #{coordinate}"
     else
       puts "The slot has been taken, try again"
@@ -74,7 +73,7 @@ class Grid
   end
 
   def check_player_victory
-    check_horizotal_match || check_vertical_match || check_diagonal_match unless false
+    check_horizotal_match || check_vertical_match || check_diagonal_match
   end
 
   def who_is_winner?
