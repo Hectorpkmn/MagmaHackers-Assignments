@@ -37,10 +37,22 @@ class Grid
     end
   end
 
+  def insert_value_to_grid(coordinate, current_player)
+    if grid[coordinate.to_s] == "[F]"
+      @grid[coordinate.to_s] = current_player
+      switch_player
+      puts "Value received was: #{coordinate}"
+    else
+      puts "The slot has been taken, try again"
+    end
+  end
+
   def receive_choice
     coordinate = players.ask_for_coordinate
-    current_player = switch_player
-    @grid[coordinate.to_s] = current_player
-    puts "Value received was: #{coordinate}"
+    if coordinate >= 1 && coordinate <= 9
+      insert_value_to_grid(coordinate, current_player)
+    else
+      puts "Value is not valid\n"
+    end
   end
 end

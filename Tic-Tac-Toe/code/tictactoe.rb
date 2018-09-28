@@ -12,10 +12,10 @@ class TicTacToe
 
   def greet_players
     first_game = "This is the first game"
-    p1_turn = "Turn of the player 1"
+#    p1_turn = "Turn of the player ONE"
 
     puts "Welcome to Tic Tac Toe game"
-    puts "#{first_game} and it is #{p1_turn} \n"
+#    puts "#{first_game} and it is #{p1_turn} \n"
     puts "\nGame starts"
   end
 
