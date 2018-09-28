@@ -23,9 +23,13 @@ class TicTacToe
     loop do
       grid.draw_grid
       grid.receive_choice
-      break if grid.check_player_victory
+      break if grid.check_player_victory || grid.check_game_draw
       grid.switch_player
     end
-    puts "The winner is: #{grid.who_is_winner?}"
+    if grid.check_player_victory
+      puts "The winner is: #{grid.who_is_winner?}"
+    else
+      puts "The game was a draw!"
+    end
   end
 end

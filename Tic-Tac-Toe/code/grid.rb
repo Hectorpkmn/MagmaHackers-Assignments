@@ -1,11 +1,12 @@
 class Grid
-  attr_accessor :grid, :players, :current_player, :player1, :player2, :horizontal_match, :vertical_match, :diagonal_match
+  attr_accessor :grid, :players, :current_player, :player1, :player2, :horizontal_match, :vertical_match, :diagonal_match, :turn_counter
 
   def initialize
     @players = Players.new
     @player1 = "[X]"
     @player2 = "[O]"
     @current_player = @player1
+    @turn_counter = 0
   end
 
   def create_grid
@@ -40,6 +41,7 @@ class Grid
   def insert_value_to_grid(coordinate, current_player)
     if grid[coordinate.to_s] == "[F]"
       @grid[coordinate.to_s] = current_player
+      count_turns
       puts "Value received was: #{coordinate}"
     else
       puts "The slot has been taken, try again"
@@ -53,6 +55,12 @@ class Grid
     else
       puts "Value is not valid\n"
     end
+  end
+
+  def count_turns
+    @turn_counter = turn_counter.to_i + 1
+
+    puts "Turn: #{turn_counter}"
   end
 
   def check_horizotal_match
@@ -74,6 +82,10 @@ class Grid
 
   def check_player_victory
     check_horizotal_match || check_vertical_match || check_diagonal_match
+  end
+
+  def check_game_draw
+    true if turn_counter == 9
   end
 
   def who_is_winner?
