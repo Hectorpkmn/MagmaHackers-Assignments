@@ -12,20 +12,21 @@ class TicTacToe
 
   def greet_players
     first_game = "This is the first game"
-#    p1_turn = "Turn of the player ONE"
 
     puts "Welcome to Tic Tac Toe game"
-#    puts "#{first_game} and it is #{p1_turn} \n"
     puts "\nGame starts"
   end
 
   def start_game
+    winner = false
     greet_players
     grid.create_grid
-    #Hardcoding next steps by now for testing purpose
-    loop do
+    until winner do
       grid.draw_grid
       grid.receive_choice
+#      winner = grid.validate_game_winner
+#      print winner
     end
+    puts "The winner is: #{grid.who_is_winner?}"
   end
 end
