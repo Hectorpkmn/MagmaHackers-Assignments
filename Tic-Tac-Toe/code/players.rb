@@ -1,4 +1,12 @@
 class Players
+  attr_accessor :piece
+
+  def ask_for_coordinate
+    print "\nplease choose a free slot by typing its number: "
+    p1NumberChosen = gets.to_i
+  end
+
+=begin
   def player_1_moves
     p1NumberChosen = ask_for_coordinate
     invalidCounter = 0
@@ -17,11 +25,5 @@ class Players
     puts "Your selected slot number was: #{p1NumberChosen}"
     ask_for_coordinate
   end
-
-  def ask_for_coordinate
-    puts "\n\nTurn of the player ONE\n"
-    print "please choose a free slot by typing its number: "
-    p1NumberChosen = gets.to_i
-  end
-
+=end
 end
