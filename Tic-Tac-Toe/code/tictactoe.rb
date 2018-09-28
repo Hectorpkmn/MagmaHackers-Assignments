@@ -18,15 +18,18 @@ class TicTacToe
   end
 
   def start_game
-    winner = false
     greet_players
     grid.create_grid
-    until winner do
+    loop do
       grid.draw_grid
       grid.receive_choice
-#      winner = grid.validate_game_winner
-#      print winner
+      break if grid.check_player_victory || grid.check_game_draw
+      grid.switch_player
     end
-    puts "The winner is: #{grid.who_is_winner?}"
+    if grid.check_player_victory
+      puts "The winner is: #{grid.who_is_winner?}"
+    else
+      puts "The game was a draw!"
+    end
   end
 end

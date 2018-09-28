@@ -1,14 +1,12 @@
 class Grid
-  attr_accessor :grid, :players, :current_player, :player1, :player2, :horizontal_match, :vertical_match, :diagonal_match
+  attr_accessor :grid, :players, :current_player, :player1, :player2, :horizontal_match, :vertical_match, :diagonal_match, :turn_counter
 
   def initialize
     @players = Players.new
     @player1 = "[X]"
     @player2 = "[O]"
     @current_player = @player1
-    @horizontal_match = [["1","2","3"],["4","5","6"],["7","8","9"]]
-    @vertical_match = [["1","4","7"],["2","5","8"],["3","6","9"]]
-    @diagonal_match = [["1","5","9"],["3","5","7"]]
+    @turn_counter = 0
   end
 
   def create_grid
@@ -43,7 +41,7 @@ class Grid
   def insert_value_to_grid(coordinate, current_player)
     if grid[coordinate.to_s] == "[F]"
       @grid[coordinate.to_s] = current_player
-      switch_player #
+      count_turns
       puts "Value received was: #{coordinate}"
     else
       puts "The slot has been taken, try again"
@@ -59,46 +57,35 @@ class Grid
     end
   end
 
-  def validate_game_winner
-    horizontal = check_horizotal_match
-    vertical = check_vertical_match
-    diagonal = diagonal_match
+  def count_turns
+    @turn_counter = turn_counter.to_i + 1
 
-    print "h: #{horizontal}, v: #{vertical}, d: #{diagonal}"
-    puts
-    horizontal || vertical || diagonal
+    puts "Turn: #{turn_counter}"
   end
 
   def check_horizotal_match
-    horizontal_match.each do |array_match|
-      winner = check_player_victory(array_match)
-    end
+    @grid["1"] == @current_player && @grid["2"] == @current_player && @grid["3"] == @current_player ||
+    @grid["4"] == @current_player && @grid["5"] == @current_player && @grid["6"] == @current_player ||
+    @grid["7"] == @current_player && @grid["8"] == @current_player && @grid["9"] == @current_player
   end
 
   def check_vertical_match
-    vertical_match.each do |array_match|
-      winner = check_player_victory(array_match)
-    end
+    @grid["1"] == @current_player && @grid["4"] == @current_player && @grid["7"] == @current_player ||
+    @grid["2"] == @current_player && @grid["5"] == @current_player && @grid["8"] == @current_player ||
+    @grid["3"] == @current_player && @grid["6"] == @current_player && @grid["9"] == @current_player
   end
 
   def check_diagonal_match
-    diagonal_match.each do |array_match|
-      winner = check_player_victory(array_match)
-      winner
-    end
+    @grid["1"] == @current_player && @grid["5"] == @current_player && @grid["9"] == @current_player ||
+    @grid["3"] == @current_player && @grid["5"] == @current_player && @grid["7"] == @current_player
   end
 
-  def check_player_victory(array_match)
-    puts "|before if: #{current_player}| "
-    puts "grid position: #{@grid}"
-    gets.chomp
-    if @grid[array_match[0]] == @current_player && @grid[array_match[1]] == @current_player && @grid[array_match[2]] == @current_player
-      print "|true? if| "
-      return true
-    else
-      print "|false? else| "
-      return false
-    end
+  def check_player_victory
+    check_horizotal_match || check_vertical_match || check_diagonal_match
+  end
+
+  def check_game_draw
+    true if turn_counter == 9
   end
 
   def who_is_winner?
